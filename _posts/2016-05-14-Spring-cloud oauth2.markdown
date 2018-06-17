@@ -346,12 +346,12 @@ public class BaseUserDetailService implements UserDetailsService {
 注意：client_id：为存储在数据库里的client_id, response_type：写死code
 
 1. 链接回车后进入spring security 的简单登陆页面,  
-![](https://images2018.cnblogs.com/blog/1354478/201804/1354478-20180430142243174-1235392304.png)  
+![](http://112.74.60.248:8080/image/simplelogin.png)  
 
 2. 输入账号密码，为实现的 UserDetailsService 要里获取的用户，点击 login,
 3. 进入简单授权页面，点击 Authorize,
 4. 重定向到 redirect_uri，并带有 code 参数:
 `http://www.baidu.com?code=rTKETX`
 5. post请求获取 token:  
-![](https://images2018.cnblogs.com/blog/1354478/201804/1354478-20180430143212353-165992859.png)
+![](http://112.74.60.248:8080/image/posttoken.png)
 注意，此处需加 `Authorization` 请求头，值为 `Basic xxx` xxx 为 `client_id:client_secret` 的 base64编码。
