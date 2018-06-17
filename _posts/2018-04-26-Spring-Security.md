@@ -9,7 +9,9 @@ categories: jekyll update
 
 * 将用户、权限、资源（url）采用数据库存储  
 * 自定义过滤器，代替原有的 FilterSecurityInterceptor
-* 自定义实现 UserDetailsService、AccessDecisionManager和InvocationSecurityMetadataSourceService，并在配置文件进行相应的配置
+* 自定义实现 UserDetailsService、AccessDecisionManager和InvocationSecurityMetadataSourceService，并在配置文件进行相应的配置  
+GitHub 地址：<https://github.com/fp2952/spring-boot-security-demo>
+
  
 ## 用户角色表（基于RBAC权限控制）
 * 用户表(base_user)
@@ -62,7 +64,8 @@ categories: jekyll update
 ## 实现主要配置类 
 
 ### 实现AbstractAuthenticationProcessingFilter 
-用于用户表单验证，内部调用了authenticationManager完成认证，根据认证结果执行successfulAuthentication或者unsuccessfulAuthentication，无论成功失败，一般的实现都是转发或者重定向等处理。
+用于用户表单验证，内部调用了authenticationManager完成认证，根据认证结果执行successfulAuthentication或者unsuccessfulAuthentication，无论成功失败，一般的实现都是转发或者重定向等处理。  
+
 ```
    @Override
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException, IOException, ServletException {
@@ -135,6 +138,7 @@ UserDetailsService只定义了一个方法 loadUserByUsername，根据用户名�
 
 ### 实现AbstractSecurityInterceptor
 访问url时，会被AbstractSecurityInterceptor拦截器拦截，然后调用FilterInvocationSecurityMetadataSource的方法来获取被拦截url所需的全部权限，再调用授权管理器AccessDecisionManager鉴权。  
+
 ```
 public class CustomSecurityInterceptor extends AbstractSecurityInterceptor implements Filter {
     private FilterInvocationSecurityMetadataSource securityMetadataSource;
